@@ -18,6 +18,15 @@ def movie_list(request):
         # movies = get_list_or_404(Movie.objects.order_by('-pk'))
         serializer = MovieSerializer(movies, many=True)
         return Response(serializer.data)
+# 영화 상세
+@api_view(['GET'])
+def movie_detail(request, movie_pk):
+    if request.method == 'GET':
+        movie = Movie.objects.get(pk=movie_pk)
+        serializer = MovieSerializer(movie)
+        return Response(serializer.data)
+
+
 
 # 배우
 @api_view(['GET'])

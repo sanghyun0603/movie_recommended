@@ -1,7 +1,11 @@
 <template>
   <div>
     <h2>ForumDetailView</h2>
-    <ForumComment/>
+    {{forum.title}}
+    <ForumComment
+    :forum-comments="forum.forumcomment_set"
+    :forum-id="forum.id"
+    />
   </div>
 </template>
 
@@ -12,6 +16,14 @@ export default {
   name : 'ForumDetailView',
   components : {
     ForumComment,
+  },
+  created() {
+    this.$store.dispatch('getForumDetail', this.$route.params.id)
+  },
+  computed : {
+    forum() {
+      return this.$store.state.forum
+    }
   }
 }
 </script>

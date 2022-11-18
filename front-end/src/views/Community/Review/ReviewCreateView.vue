@@ -12,8 +12,9 @@ export default {
   name : 'ReviewCreateView',
   components : {
     ReviewForm,
-  }
+  },
 }
+
 </script>
 
 <style>

@@ -1,7 +1,10 @@
 <template>
   <div>
     <h2>ReviewList</h2>
-    <ReviewListItem/>
+    <ReviewListItem
+    v-for="review in Reviews" :key="review.id"
+    :review="review"
+    />
   </div>
 </template>
 
@@ -12,7 +15,12 @@ export default {
   name : 'ReviewList',
   components : {
     ReviewListItem,
-  }
+  },
+  computed : {
+    Reviews(){
+      return this.$store.getters.reviews
+    }
+  },
 }
 </script>
 

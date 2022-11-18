@@ -1,7 +1,10 @@
 <template>
   <div>
     <h2>ForumList</h2>
-    <ForumListItem/>
+    <ForumListItem
+    v-for ="forum in Forums" :key="forum.id"
+    :forum="forum"
+    />
   </div>
 </template>
 
@@ -12,7 +15,14 @@ export default {
   name : 'ForumList',
   components : {
     ForumListItem,
-  }
+  },
+  computed : {
+    Forums(){
+      return this.$store.state.forums
+    }
+  },
+
+
 }
 </script>
 

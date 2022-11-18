@@ -1,7 +1,10 @@
 <template>
   <div>
     <h2>TogetherList</h2>
-    <TogetherListItem/>
+    <TogetherListItem
+    v-for="together in Togethers" :key="together.id"
+    :together="together"
+    />
   </div>
 </template>
 
@@ -12,6 +15,11 @@ export default {
   name : 'TogetherList',
   components : {
     TogetherListItem,
+  },
+  computed : {
+    Togethers() {
+      return this.$store.getters.togethers
+    }
   }
 }
 </script>

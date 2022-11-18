@@ -18,6 +18,12 @@ import TogetherUpdateView from '@/views/Community/Together/TogetherUpdateView'
 import TogetherDetailView from '@/views/Community/Together/TogetherDetailView'
 //User
 import SignupView from '@/views/User/SignupView'
+import LoginView from '@/views/User/LoginView'
+//Movie
+import ShowMoviesView from '@/views/Movie/ShowMoviesView'
+import SelectGenreView from '@/views/Movie/SelectGenreView'
+import MovieDetailView from '@/views/Movie/MovieDetailView'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -44,7 +50,7 @@ const routes = [
   },
   {
     //추후 path :id로 수정필요
-    path: '/forum/detail',
+    path: '/forum/:id',
     name: 'ForumDetailView',
     component : ForumDetailView
   },
@@ -66,7 +72,7 @@ const routes = [
   },
   {
     //추후 path 수정
-    path: '/review/detail',
+    path: '/review/:id',
     name: 'ReviewDetailView',
     component : ReviewDetailView,
   },
@@ -87,7 +93,7 @@ const routes = [
     component : TogetherUpdateView,
   },
   {//수정
-    path: '/together/detail',
+    path: '/together/:id',
     name: 'TogetherDetailView',
     component : TogetherDetailView,
   },
@@ -96,8 +102,28 @@ const routes = [
     path: '/signup',
     name: 'SignupView',
     component : SignupView,
+  },
+  {
+    path: '/login',
+    name: 'LoginView',
+    component : LoginView,
+  },
+  //movie
+  {
+    path: '/showmovie',
+    name: 'ShowMoviesView',
+    component : ShowMoviesView,
+  },
+  {
+    path : '/showmovie/:id',
+    name : 'MovieDetailView',
+    component : MovieDetailView,
+  },
+  {
+    path: '/selectgenre',
+    name: 'SelectGenreView',
+    component : SelectGenreView,
   }
-
 ]
 
 const router = new VueRouter({

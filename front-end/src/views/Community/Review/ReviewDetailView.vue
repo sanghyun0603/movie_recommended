@@ -1,7 +1,11 @@
 <template>
   <div>
     <h2>ReviewDetailView</h2>
-    <ReviewComment/>
+    {{review.title}}
+    <ReviewComment
+    :review-comments="review.reviewcomment_set"
+    :review-id="review.id"
+    />
   </div>
 </template>
 
@@ -12,6 +16,14 @@ export default {
   name : 'ReviewDetailView',
   components: {
     ReviewComment,
+  },
+  created() {
+    this.$store.dispatch('getReviewDetail', this.$route.params.id)
+  },
+  computed : {
+    review() {
+      return this.$store.getters.review
+    }
   }
 }
 </script>
