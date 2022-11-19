@@ -18,10 +18,14 @@ export default {
       keyword : '',
     };
   },
+  props : {
+    mapLng : Number,
+    mapLat : Number,
+  },
   methods: {
     initMap() {
       const container = document.getElementById("map");
-      const center = new kakao.maps.LatLng(36.3553193257957, 127.29820111515)
+      const center = new kakao.maps.LatLng(this.mapLat, this.mapLng)
       const options = {
         center: center,
         level: 3,

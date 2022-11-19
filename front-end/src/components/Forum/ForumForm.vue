@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>ForumForm</h2>
-    <form @submit.prevent="createForum">
+    <form @submit.prevent="onSubmit">
       <label for="title">title</label>
       <input id="title" type="text" v-model="title">
 
@@ -18,9 +18,13 @@ export default {
   name : 'ForumForm',
   data(){
     return {
-      title : null,
-      content : null,
+      title : this.forum.title,
+      content : this.forum.content,
     }
+  },
+  props : {
+    forum : Object,
+    action : String,
   },
   methods : {
     createForum(){
@@ -31,6 +35,21 @@ export default {
         title, content
       }
       this.$store.dispatch('createForum', payload)
+    },
+    updateForum(){
+      const title = this.title
+      const content = this.content
+      const payload = {
+        title, content
+      }
+      this.$store.dispatch('createForum', payload)
+    },
+    onSubmit() {
+      if (this.action === 'create') {
+        this.createForum()
+      } else {
+        this.updateForum()
+      }
     }
   }
 }

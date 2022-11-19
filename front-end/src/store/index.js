@@ -27,6 +27,8 @@ export default new Vuex.Store({
   },
   getters: {
     authHead: (state) => ({ Authorization: `Token ${state.token}`}),
+    forums: (state) => state.forums,
+    forum: (state) => state.forum,
     reviews: (state) => state.reviews,
     review: (state) => state.review,
     togethers: (state) => state.togethers,

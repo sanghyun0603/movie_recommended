@@ -2,6 +2,7 @@
   <div>
     <h2>ForumDetailView</h2>
     {{forum.title}}
+    <router-link :to="{ name : 'ForumUpdateView' }">UPDATE</router-link> <br>
     <ForumComment
     :forum-comments="forum.forumcomment_set"
     :forum-id="forum.id"
@@ -22,7 +23,7 @@ export default {
   },
   computed : {
     forum() {
-      return this.$store.state.forum
+      return this.$store.getters.forum
     }
   }
 }

@@ -2,7 +2,8 @@
   <div>
     <h2>TogetherDetailView</h2>
     {{together.title}}
-    {{together.endtime}}
+    {{endtims}}
+    <router-link :to="{ name : 'TogetherUpdateView'}">UPDATE</router-link> <br>
     <TogetherMap
     :map-lat="together.map_lat"
     :map-lng="together.map_lng"
@@ -32,6 +33,13 @@ export default {
     together() {
       return this.$store.getters.together
     },
+    endtims() {
+      const togetherEndtime = this.together.endtime
+      console.log(this.together.endtime)
+      const date = new Date(togetherEndtime)
+      const output = `${date.getFullYear()}년 ${date.getMonth()+1}월 ${date.getDate()}일 ${date.getHours()}시 ${date.getMinutes()}분까지`
+      return output
+    }
   }
 }
 </script>

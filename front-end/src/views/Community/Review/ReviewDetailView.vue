@@ -2,6 +2,7 @@
   <div>
     <h2>ReviewDetailView</h2>
     {{review.title}}
+    <router-link :to="{ name : 'ReviewUpdateView'}">UPDATE</router-link> <br>
     <ReviewComment
     :review-comments="review.reviewcomment_set"
     :review-id="review.id"
