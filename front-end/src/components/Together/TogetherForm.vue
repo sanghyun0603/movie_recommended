@@ -31,8 +31,8 @@ export default {
     return {
       title : null,
       content : null,
-      map_lat : 36.3553193257957,
-      map_lng : 127.29820111515,
+      map_lat : null,
+      map_lng : null,
       endtime : null
     }
   },
@@ -55,7 +55,9 @@ export default {
 
     },
     mapPosi(posi) {
-      console.log(posi)
+      this.map_lng = posi.posiX
+      this.map_lat = posi.posiY
+      console.log(posi.posiY,posi.posiX)
     }
   }
 }
