@@ -7,13 +7,9 @@
 
       <label for="content">content</label>
       <input id='content' type="text" v-model="content">
-      
-      <!-- 추후에는 컴포넌트 넣어서 주소 검색하면 위도 경도 나올 수 있게 -->
-      <!-- const coords = new kakao.maps.LatLng(result[0].y, result[0].x); -->
 
       <label for="endtime">endtime</label>
       <input id='endtime' type="datetime-local" v-model="endtime">
-      
       <input type="submit">
     </form>
     <TogetherFormMap
