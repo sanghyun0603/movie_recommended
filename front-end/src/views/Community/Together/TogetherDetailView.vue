@@ -4,6 +4,7 @@
     {{together.title}}
     {{endtims}}
     <router-link :to="{ name : 'TogetherUpdateView'}">UPDATE</router-link> <br>
+    <button @click="deleteTogether">삭제</button>
     <TogetherMap
     :map-lat="together.map_lat"
     :map-lng="together.map_lng"
@@ -26,7 +27,6 @@ export default {
     TogetherMap,
   },
   created() {
-    console.log(this.$route.params.id)
     this.$store.dispatch('getTogetherDetail', this.$route.params.id)
   },
   computed : {
@@ -39,6 +39,11 @@ export default {
       const date = new Date(togetherEndtime)
       const output = `${date.getFullYear()}년 ${date.getMonth()+1}월 ${date.getDate()}일 ${date.getHours()}시 ${date.getMinutes()}분까지`
       return output
+    }
+  },
+  methods : {
+    deleteTogether() {
+      this.$store.dispatch('deleteTogether', this.together.id )
     }
   }
 }

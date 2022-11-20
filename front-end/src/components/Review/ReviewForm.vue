@@ -59,12 +59,12 @@ export default {
       const movie_title = this.movie_title
       const poster_path = this.poster_path
       const score = this.score
-
+      const id = this.Review.id
       const payload = {
-        title, review, movie_title, poster_path, score
+        title, review, movie_title, poster_path, score, id
       }
 
-      this.$store.dispatch('createReview', payload)
+      this.$store.dispatch('updateReview', payload)
     },
     onSubmit() {
       if (this.action === 'create') {

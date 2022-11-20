@@ -2,6 +2,7 @@
   <div>
     {{forumComment.nickname}}
     {{forumComment.content}}
+    <button @click="deleteFourmComment">삭제</button>
   </div>
 </template>
 
@@ -9,7 +10,12 @@
 export default {
  name : 'ForumCommentItem',
  props : {
-  forumComment : Object
+  forumComment : Object,
+ },
+ methods : {
+  deleteFourmComment() {
+    this.$store.dispatch('deleteFourmComment', this.forumComment.id)
+  }
  }
 }
 </script>

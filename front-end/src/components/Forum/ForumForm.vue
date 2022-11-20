@@ -39,10 +39,11 @@ export default {
     updateForum(){
       const title = this.title
       const content = this.content
+      const id = this.forum.id
       const payload = {
-        title, content
+        title, content,id
       }
-      this.$store.dispatch('createForum', payload)
+      this.$store.dispatch('updateForum', payload)
     },
     onSubmit() {
       if (this.action === 'create') {

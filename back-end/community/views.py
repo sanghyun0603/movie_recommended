@@ -49,7 +49,7 @@ def review_detail(request, review_pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     elif request.method == 'PUT':
-        serializer = ReviewSerializer(review)
+        serializer = ReviewSerializer(review, data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
@@ -133,7 +133,7 @@ def forum_detail(request, forum_pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     elif request.method == 'PUT':
-        serializer = ForumSerializer(forum)
+        serializer = ForumSerializer(forum,data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
@@ -214,7 +214,7 @@ def together_detail(request, together_pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     elif request.method == 'PUT':
-        serializer = TogetherSerializer(together)
+        serializer = TogetherSerializer(together,data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
