@@ -1,7 +1,10 @@
 <template>
   <div>
-    <h1>카카오 맵 테스트</h1>
-    <input type="text" @keyup.enter="searchPlace" v-model.trim="keyword">
+    <h4>어디서 만날까요?</h4>
+    <div class="my-3 mx-auto w-25 form-floating">
+      <input class="form-control" type="text" @keyup.enter="searchPlace" v-model.trim="keyword">
+      <label for="moviename">주소를 입력하세요</label>
+    </div>
     <div id="map"></div>
   </div>
 </template>
@@ -61,7 +64,7 @@ export default {
         });
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         const infowindow = new kakao.maps.InfoWindow({
-            content: `<div style="width:150px;text-align:center;padding:6px 0;">${keyword}</div>`
+            content: `<div style="width:150px;text-align:center;padding:6px 0;">${this.keyword}</div>`
         });
         infowindow.open(map, marker);
         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다

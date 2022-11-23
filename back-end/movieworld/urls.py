@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from accounts import views as accounts_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -22,4 +23,11 @@ urlpatterns = [
     path('movies/', include('movies.urls')),
     path('accounts/', include('dj_rest_auth.urls')),
     path('accounts/signup/', include('dj_rest_auth.registration.urls')),
+    path('withdrawal/', accounts_views.withdrawal),
+    path('profile/<str:username>/', accounts_views.getuserinfo),
+    path('userlikesforum/<str:username>/', accounts_views.userlikesforum),
+    path('userlikesreview/<str:username>/', accounts_views.userlikesreview),
+    path('userlikestogether/<str:username>/', accounts_views.userlikestogether),
+    path('userlikesmovie/<str:username>/', accounts_views.userlikesmovie),
+    path('getnowuesrinfo/', accounts_views.getnowuesrinfo),
 ]

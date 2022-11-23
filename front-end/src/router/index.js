@@ -19,11 +19,14 @@ import TogetherDetailView from '@/views/Community/Together/TogetherDetailView'
 //User
 import SignupView from '@/views/User/SignupView'
 import LoginView from '@/views/User/LoginView'
+import PasswordChangeView from '@/views/User/PasswordChangeView'
+import ProfileView from '@/views/User/ProfileView'
 //Movie
 import ShowMoviesView from '@/views/Movie/ShowMoviesView'
 import SelectGenreView from '@/views/Movie/SelectGenreView'
 import MovieDetailView from '@/views/Movie/MovieDetailView'
-
+import Modal from '@/components/Modal.vue'
+import Content from '@/components/Movie/Content'
 Vue.use(VueRouter)
 
 const routes = [
@@ -61,7 +64,7 @@ const routes = [
     component : ReviewView,
   },
   {
-    path: '/review/create',
+    path: '/review/create/:action',
     name: 'ReviewCreateView',
     component : ReviewCreateView,
   },
@@ -108,17 +111,36 @@ const routes = [
     name: 'LoginView',
     component : LoginView,
   },
+  {
+    path: '/passwordchange',
+    name: 'PasswordChangeView',
+    component : PasswordChangeView,
+  },
+  {
+    path: '/profile/:username',
+    name: 'ProfileView',
+    component : ProfileView,
+  },
   //movie
   {
     path: '/showmovie',
     name: 'ShowMoviesView',
     component : ShowMoviesView,
+    children: [
+      {
+        path: ':movieId',
+        component: Modal,
+        props: {
+          component: Content, 
+        }
+      }
+    ]
   },
-  {
-    path : '/showmovie/:id',
-    name : 'MovieDetailView',
-    component : MovieDetailView,
-  },
+  // {
+  //   path : '/showmovie/:id',
+  //   name : 'MovieDetailView',
+  //   component : MovieDetailView,
+  // },
   {
     path: '/selectgenre',
     name: 'SelectGenreView',

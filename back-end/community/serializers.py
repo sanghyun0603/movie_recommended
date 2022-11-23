@@ -3,17 +3,17 @@ from .models import Review , Forum, ReviewComment, ForumComment, Together, Toget
 
 # - ReviewListSerializer - get,post (리뷰 게시판 전체 조회, 글 작성)
 class ReviewListSerializer(serializers.ModelSerializer):
-
+    username = serializers.CharField(source='user.username', read_only=True)
     nickname = serializers.CharField(source='user.nickname', read_only=True)
 
     class Meta:
         model = Review
-        fields = ('id', 'title', 'nickname')
+        fields = ('id', 'title', 'nickname','user_id','username','poster_path','movie_title','created_at','score')
 
 # - ReviewCommentSerializer - get,post,del,put (리뷰 게시판 댓글 조회, 생성, 삭제, 수정)
 class ReviewCommentSerializer(serializers.ModelSerializer):
     nickname = serializers.CharField(source='user.nickname', read_only=True)
-
+    
     class Meta:
         model = ReviewComment
         fields = '__all__'
@@ -28,16 +28,17 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = '__all__'
-        read_only_fields = ('user',)
+        read_only_fields = ('user','like_users')
+
 
 # - ForumListSerializer -get,post (자유 게시판 전체 조회, 글 작성)
 class ForumListSerializer(serializers.ModelSerializer):
     # 현재 로그인 한 유저 네임 알기 위해서
     nickname = serializers.CharField(source='user.nickname', read_only=True)
-
+    username = serializers.CharField(source='user.username', read_only=True)
     class Meta:
         model = Forum
-        fields = ('id', 'title', 'nickname')
+        fields = ('id', 'title', 'nickname','user_id','username','created_at')
 
 # - ForumCommentSerializer -get,post,delete,put (자유 게시판 댓글 조회, 생성, 삭제, 수정)
 class ForumCommentSerializer(serializers.ModelSerializer):
@@ -57,16 +58,16 @@ class ForumSerializer(serializers.ModelSerializer):
     class Meta:
         model = Forum
         fields = '__all__'
-        read_only_fields = ('user',)
+        read_only_fields = ('user','like_users')
 
 # - TogetherListSerializer - get,post (모임 게시판 전체 조회, 글 작성)
 class TogetherListSerializer(serializers.ModelSerializer):
-    
+    username = serializers.CharField(source='user.username', read_only=True)
     nickname = serializers.CharField(source='user.nickname', read_only=True)
 
     class Meta:
         model = Together
-        fields = ('id', 'title', 'nickname','endtime')
+        fields = ('id', 'title', 'nickname','endtime','user_id','username','created_at')
 
 # - TogetherCommentSerializer - get,post,del,put (모임 게시판 댓글 조회, 생성, 삭제, 수정)
 class TogetherCommentSerializer(serializers.ModelSerializer):
@@ -86,5 +87,5 @@ class TogetherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Together
         fields = '__all__'
-        read_only_fields = ('user',)
+        read_only_fields = ('user','like_users')
 

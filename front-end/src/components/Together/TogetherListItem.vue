@@ -1,7 +1,7 @@
 <template>
   <div>
     <a :href="`http://localhost:8080/together/${together.id}/`"><h3>{{together.title}}</h3></a>
-    <p>{{together.nickname}}</p>
+    <router-link :to="{ name : 'ProfileView', params : { username : together.username} }"><p>{{together.nickname}}</p></router-link>
   </div>
 </template>
 

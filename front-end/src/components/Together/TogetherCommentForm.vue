@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2>댓글 작성</h2>
     <form @submit.prevent="togetherCommentCreate" >
       <label for="TogetherComment">댓글작성 : </label>
       <input type="text" id="TogetherComment" v-model="content">

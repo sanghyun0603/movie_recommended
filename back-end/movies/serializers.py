@@ -8,6 +8,16 @@ class MovieSerializer(serializers.ModelSerializer):
         model = Movie
         fields = '__all__'
 
+
+# class DicMovie(object):
+#     def __init__(self, dictionary):
+#         self.dict = dictionary
+
+# class GenreMovieSerializer(serializers.Serializer):
+#     dictionary = serializers.DictField(
+#     child = serializers.CharField()
+#     )
+
 #Actor
 class ActorSerializer(serializers.ModelSerializer):
 

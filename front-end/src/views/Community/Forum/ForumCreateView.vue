@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h2>ForumCreateView</h2>
+  <div class ="forumCreateContainer">
+    <h2>글쓰기</h2>
     <ForumForm
     :forum="forum" action="create"
     />
@@ -24,5 +24,11 @@ export default {
 </script>
 
 <style>
-
+.forumCreateContainer{
+  height: 500px;
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto ;
+  margin-top: 100px ;
+}
 </style>

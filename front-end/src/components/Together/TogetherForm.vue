@@ -1,24 +1,34 @@
 <template>
-  <div>
-    <h2>TogetherForm</h2>
-    <form @submit.prevent="onSubmit">
-      <label for="title">title</label>
-      <input id='title' type="text" v-model="title">
+  <div class="togetherContainer">
+    <!-- <h2>같이봐요</h2> -->
+      <TogetherFormMap
+      :map-lat="this.map_lat"
+      :map-lng="this.map_lng"
+      @to-form="mapPosi"
+      />
+      <form class="m-4" @submit.prevent="onSubmit">
 
-      <label for="content">content</label>
-      <input id='content' type="text" v-model="content">
-      
+        <div class="row g-3">
+          <div class="form-floating col-sm-7 m-3">
+            <input class="form-control" id="title" type="text" v-model="title">
+            <label for="title">title</label>
+          </div>
 
-      <label for="endtime">endtime</label>
-      <input id='endtime' type="datetime-local" v-model="endtime">
-      
-      <input type="submit">
+          <div class="form-floating m-3 col-sm m-3">
+            <input id='endtime' type="datetime-local" @change="inputTime">
+          </div>
+        
+        </div>
+
+        <div class="form-floating m-3">
+          <textarea class="form-control" id="content" type="text" v-model="content" style="height:300px"></textarea>
+          <label for="content">Together</label>
+        </div>
+
+
+      <button class="createBtn">작성</button>
     </form>
-    <TogetherFormMap
-    :map-lat="this.map_lat"
-    :map-lng="this.map_lng"
-    @to-form="mapPosi"
-    />
+
   </div>
 </template>
 
@@ -44,6 +54,9 @@ export default {
     action : String,
   },
   methods : {
+    inputTime(event){
+      this.endtime = event.target.value
+    },
     createTogether(){
       const title = this.title
       const content = this.content
@@ -109,5 +122,11 @@ export default {
 </script>
 
 <style>
-
+.togetherContainer{
+  height: 500px;
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto ;
+  margin-top: 100px ;
+}
 </style>

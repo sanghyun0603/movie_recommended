@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>TogetherComment</h2>
+    <h4>댓글</h4>
     <TogetherCommentItem
     v-for="togethercomment in togetherComments" :key="togethercomment.id"
     :together-comment="togethercomment"

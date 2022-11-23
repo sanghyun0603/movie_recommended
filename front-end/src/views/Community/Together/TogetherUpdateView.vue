@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>TogetherUpdateView</h2>
+    <!-- <h2>TogetherUpdateView</h2> -->
     <TogetherForm
     :Together="Together" action="update"
     />

@@ -1,7 +1,7 @@
 <template>
   <div>
     <hr>
-    <h2>지도맵보여주기</h2>
+    <h2>여기서 만나요</h2>
     <div id="map"></div>
   </div>
 </template>
@@ -33,7 +33,7 @@ export default {
             position: center
         });
       var infowindow = new kakao.maps.InfoWindow({
-            content: `<div style="width:150px;text-align:center;padding:6px 0;">기준장소</div>`
+            content: `<div style="width:150px;text-align:center;padding:6px 0;">모임장소</div>`
         });
         infowindow.open(this.map, marker);
     },
@@ -59,7 +59,10 @@ export default {
 
 <style>
 #map {
-  width: 100%;
-  height: 300px;
+  width: 400px;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  border: solid black;
 }
 </style>

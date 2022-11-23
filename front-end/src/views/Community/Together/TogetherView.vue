@@ -1,9 +1,8 @@
 <template>
-  <div>
-    <h2>TogetherView</h2>
-    <router-link :to="{ name : 'TogetherCreateView'}">CREATE</router-link> <br>
-    
+  <div class="togetherContainer">
+    <h2>구해요 게시판</h2>
     <TogetherList/>
+    <router-link :to="{ name : 'TogetherCreateView'}">CREATE</router-link>
   </div> 
 </template>
 
@@ -22,5 +21,11 @@ export default {
 </script>
 
 <style>
-
+.togetherContainer{
+  height: 500px;
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto ;
+  margin-top: 100px ;
+}
 </style>

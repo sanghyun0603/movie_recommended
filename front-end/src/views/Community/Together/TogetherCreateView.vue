@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2>TogetherCreateView</h2>
     <TogetherForm
     :Together="Together" action="create"
     />

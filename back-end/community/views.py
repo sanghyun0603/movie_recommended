@@ -24,8 +24,9 @@ from .models import  (
 @api_view(['GET', 'POST'])
 def review_list(request):
     if request.method == 'GET':
-        # reviews = Review.objects.order_by('-pk')
-        reviews = get_list_or_404(Review.objects.order_by('-pk'))
+        reviews = Review.objects.order_by('-pk')
+        print(reviews)
+        # reviews = get_list_or_404(Review.objects.order_by('-pk'))
         serializer = ReviewListSerializer(reviews, many=True)
         return Response(serializer.data)
 
@@ -99,6 +100,23 @@ def review_comment_create(request, review_pk):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+# 리뷰 좋아요 (포스트)
+@api_view(['POST'])
+def likes_review(request, review_pk):
+    review = get_object_or_404(Review, pk=review_pk)
+    print('**********************************')
+    print(request)
+    if review.like_users.filter(pk=request.user.pk).exists():
+        review.like_users.remove(request.user)
+    else:
+        review.like_users.add(request.user)
+    data = review.like_users.all().count()
+    # data = str(data)
+    return Response(data)
+    
+        
+
+
 #########################################
 # 자유게시판
 
@@ -106,8 +124,8 @@ def review_comment_create(request, review_pk):
 @api_view(['GET', 'POST'])
 def forum_list(request):
     if request.method == 'GET':
-        # reviews = Forum.objects.order_by('-pk')
-        forums = get_list_or_404(Forum.objects.order_by('-pk'))
+        forums = Forum.objects.order_by('-pk')
+        # forums = get_list_or_404(Forum.objects.order_by('-pk'))
         serializer = ForumListSerializer(forums, many=True)
         return Response(serializer.data)
 
@@ -182,6 +200,17 @@ def forum_comment_create(request, forum_pk):
         serializer.save(user = request.user, forum=forum)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+@api_view(['POST'])
+def likes_forum(request, forum_pk):
+    forum = get_object_or_404(Forum, pk=forum_pk)
+    if forum.like_users.filter(pk=request.user.pk).exists():
+        forum.like_users.remove(request.user)
+    else:
+        forum.like_users.add(request.user)
+    data = forum.like_users.all().count()
+    # data = str(data)
+    return Response(data)
+
 #########################################
 # 모여요
 
@@ -189,8 +218,8 @@ def forum_comment_create(request, forum_pk):
 @api_view(['GET', 'POST'])
 def together_list(request):
     if request.method == 'GET':
-        # together = Together.objects.order_by('-pk')
-        together = get_list_or_404(Together.objects.order_by('-pk'))
+        together = Together.objects.order_by('-pk')
+        # together = get_list_or_404(Together.objects.order_by('-pk'))
         serializer = TogetherListSerializer(together, many=True)
         return Response(serializer.data)
 
@@ -260,3 +289,14 @@ def together_comment_create(request, together_pk):
     if serializer.is_valid():
         serializer.save(user = request.user, together=together)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+@api_view(['POST'])
+def likes_together(request, together_pk):
+    together = get_object_or_404(Together, pk=together_pk)
+    if together.like_users.filter(pk=request.user.pk).exists():
+        together.like_users.remove(request.user)
+    else:
+        together.like_users.add(request.user)
+    data = together.like_users.all().count()
+    # data = str(data)
+    return Response(data)
